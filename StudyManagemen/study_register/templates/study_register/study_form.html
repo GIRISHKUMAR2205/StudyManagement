@@ -1,0 +1,26 @@
+{% extends "study_register/base.html" %}
+
+{% block title %}  Study Form{% endblock title %}
+{%block content %}
+
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form}}
+    <datalist id="sponsorname-list">
+        {% for sponsor in sponsors %}
+            <option value="{{ sponsor }}"></option>
+        {% endfor %}
+    </datalist>
+    <div class="p-2">
+    </div>
+    {%  if id == 0 %}
+    <button type="submit" class="btn btn-success form-control">Submit</button>
+    {% else %}
+    <button type="submit" class="form-control btn btn-success">Update</button>
+    {% endif %}
+</form> 
+<div class="p-2"></div>
+<a href="{% url 'study_list' %}" class="form-control btn btn-danger ">Cancel</a>
+ 
+ 
+{% endblock content %}

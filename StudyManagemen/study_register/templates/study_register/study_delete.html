@@ -1,0 +1,14 @@
+{% extends "study_register/base.html" %}
+
+{% block title %}  Study Delete{% endblock title %}
+{%block content %} 
+            <div>Delete these studies</div>
+            <ul>
+                {% for study in study_list%}
+                <li>
+                    {{study.studyname}}
+                </li>
+                {% endfor %}
+            </ul>
+            <button >Delete</button>
+{% endblock content %}

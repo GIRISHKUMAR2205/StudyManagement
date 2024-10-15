@@ -1,0 +1,35 @@
+{% extends "study_register/base.html" %}
+
+{% block title %} Study List {% endblock title %}
+{% block content %} 
+<h1 align="center">Study Management</h1>
+<form action="{% url 'study_delete' %}" method="post">
+    {% csrf_token %}
+    <table class="table table-bordered">
+        <tr align="center" >
+            <th></th>
+            <th>Study Name</th>
+            <th>Study Phase</th>
+            <th>Study Description</th>
+            <th>Sponsor Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for study in study_list %}
+            <tr align="center">
+                <td><input type="checkbox" name="selected_studies" value="{{ study.studyid }}"></td>
+                <td>{{ study.studyname }}</td>
+                <td>{{ study.studyphase }}</td>
+                <td>{{ study.studydescription }}</td>
+                <td>{{ study.sponsorname }}</td>
+                <td><a href="{% url 'study_view' study.studyid %}">View</a></td>
+                <td><a href="{% url 'study_update' study.studyid %}">Edit</a></td>
+            </tr>
+        {% endfor %}
+    </table> 
+    <div class="container">
+        <a href="{% url 'study_form' %}" class="btn btn-success">Add</a>
+        <button type="submit" class="btn btn-danger">Delete </button>
+    </div>
+</form>
+{% endblock content %}
